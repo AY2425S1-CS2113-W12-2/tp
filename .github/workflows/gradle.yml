@@ -45,6 +45,8 @@ jobs:
 
       - name: Perform IO redirection test (Windows)
         if: always() && runner.os == 'Windows'
-        working-directory:  ${{ github.workspace }}/text-ui-test
+        working-directory: ${{ github.workspace }}/text-ui-test
         shell: cmd
-        run: runtest.bat
+        run: |
+          set JAVA_TOOL_OPTIONS=-Dfile.encoding=UTF-8
+          runtest.bat

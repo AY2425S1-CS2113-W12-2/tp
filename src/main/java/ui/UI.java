@@ -3,8 +3,6 @@ package ui;
 import de.vandermeer.asciitable.AsciiTable;
 import de.vandermeer.asciitable.CWC_LongestLine;
 import de.vandermeer.skb.interfaces.transformers.textformat.TextAlignment;
-import java.io.PrintStream;
-import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.stream.Collectors;
@@ -28,8 +26,6 @@ public class UI {
      */
     public UI() {
         this.scanner = new Scanner(System.in);
-        // Set the output text to be UTF-8 encoded to pass the Java CI tests
-        System.setOut(new PrintStream(System.out, true, StandardCharsets.UTF_8));
     }
 
     /**
