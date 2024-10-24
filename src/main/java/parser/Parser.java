@@ -11,6 +11,8 @@ import command.ListCommand;
 import command.StatCommand;
 import command.UnknownCommand;
 import command.ViewQuotaCommand;
+import command.FindCommand;
+
 import studentlist.StudentList;
 import ui.UI;
 
@@ -42,6 +44,9 @@ public class Parser {
             break;
         case "delete":
             new DeleteCommand(this.studentList, input, this.ui).run();
+            break;
+        case "find":
+            new FindCommand(this.studentList, input, this.ui).run();
             break;
         case "list":
             new ListCommand(this.studentList, this.ui).run();

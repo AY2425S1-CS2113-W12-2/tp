@@ -11,7 +11,10 @@ public enum Messages {
                         Note: PREFERENCE_RANKINGS should be enclosed in curly braces
 
             delete      Deletes the student with the specified ID from the list.
-                        Example: delete id/A1234567I
+                        Example: delete A1234567I
+
+            find        Finds the student with the keyword, returning either a list or report.
+                        Example: find list A1234567I
 
             list        Lists all students currently in the system.
 

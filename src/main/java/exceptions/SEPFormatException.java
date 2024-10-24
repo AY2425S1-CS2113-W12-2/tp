@@ -66,12 +66,23 @@ public class SEPFormatException extends SEPException {
 
     /**
      * Returns a SEPFormatException with a message indicating the
-     * invalid format for the viewQuota command.
+     * invalid format for the ViewQuota command.
      *
      * @return A SEPFormatException with the appropriate message.
      */
     public static SEPFormatException rejectViewQuotaFormat() {
         return new SEPFormatException("Invalid format for viewQuota command. "
                 + "Usage: ``viewQuota <UNI_INDEX>``.");
+    }
+
+    /**
+     * Returns a SEPFormatException with a message indicating the
+     * invalid format for the Find command.
+     *
+     * @return A SEPFormatException with the appropriate message.
+     */
+    public static SEPFormatException rejectFindFormat() {
+        return new SEPFormatException("Invalid find format. Please enter: " +
+                "'find <report/list> <Keyword>' ");
     }
 }

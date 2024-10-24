@@ -168,4 +168,20 @@ public class StudentListTest {
         // Test deleting a student that doesn't exist
         assertThrows(SEPException.class, () -> this.studentList.deleteStudent("delete B7654321C"));
     }
+
+    @Test
+    public void findStudent_nonExistentStudent_exceptionThrown() {
+        assertDoesNotThrow(() -> this.studentList.addStudent(this.bob));
+        assertEquals(1, this.studentList.getNumStudents());
+
+        // Test finding a student that doesn't exist
+        assertThrows(SEPException.class, () -> this.studentList.findStudent("find list B7654321C"));
+    }
+
+    @Test
+    public void findStudent_invalidFindFormat_exceptionThrown() {
+        String input = "find A1234567I";  // Invalid Find format (Missing 'list' or 'report')
+
+        assertThrows(SEPException.class, () -> this.studentList.findStudent(input));
+    }
 }

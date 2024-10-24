@@ -161,6 +161,51 @@ public class StudentList {
     }
 
     /**
+     * Finds a student in the student list or report by their student ID.
+     * Keywords inputted need not be a valid student ID,
+     * but rather keywords that the student ID contains.
+     * Note: find keyword input is case-sensitive.
+     *
+     * @param input The ID or keywords of the student to find.
+     * @throws SEPException If student find format inputted is wrong, or if student id cannot be found.
+     */
+    public void findStudent(String input) throws SEPException {
+        String[] parts = input.split("\\s+", 3);
+        ArrayList<Student> foundStudent = new ArrayList<>();
+        if (parts.length != 3) {
+            throw SEPFormatException.rejectFindFormat();
+        }
+
+        assert parts.length == 3;
+        String command = parts[1].trim().toLowerCase();
+        String studentId = parts[2].trim();
+        for (Student student : students) {
+            if (student.getId().contains(studentId)) {
+                foundStudent.add(student);
+            }
+        }
+
+        switch (command) {
+        case "list":
+            if (foundStudent.isEmpty()) {
+                throw SEPNotFoundException.rejectStudentNotFound();
+            }
+            ui.printResponse("Finding for students... student(s) found.");
+            ui.printStudentList(foundStudent);
+            break;
+        case "report":
+            if (foundStudent.isEmpty()) {
+                throw SEPNotFoundException.rejectStudentNotFound();
+            }
+            ui.printResponse("Finding for students... student(s) found.");
+            ui.generateReport(foundStudent);
+            break;
+        default:
+            throw SEPFormatException.rejectFindFormat();
+        }
+    }
+
+    /**
      * Organizes the student ID by removing all spaces,
      * including any spaces in between the numbers or alphabets,
      * before validating the student ID.
