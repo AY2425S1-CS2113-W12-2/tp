@@ -31,7 +31,7 @@ FindOurSEP is a Command Line Interface (CLI) tool designed for admins handling t
 ## Quick Start
 
 1. Ensure that you have Java 17 or above installed. ([Installation Guide](https://www.oracle.com/java/technologies/javase/jdk17-archive-downloads.html))
-2. Download the latest version v2.0 of `FindOurSEP` and the 3 test files from [here](https://github.com/AY2425S1-CS2113-W12-2/tp/releases).
+2. Download the latest version v2.0 of `FindOurSEP`, and the 3 test files from [here](https://github.com/AY2425S1-CS2113-W12-2/tp/releases).
 3. **Copy the files:**
    - Move the downloaded `.jar` file into a designated folder on your computer.
    - Move the 3 test files (test.csv/test.json/test.txt) to the same folder as the `.jar` file.
