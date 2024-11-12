@@ -547,7 +547,8 @@ public class StudentList {
 
     /**
      * Validates the student preferences for valid range and format.
-     * Preference rankings should be wrapped in curly braces and have up to 3 rankings.
+     * Preference rankings should be unique,
+     * wrapped in curly braces and have up to 3 rankings.
      *
      * @param preferencesData The preference string to validate.
      * @param errorMessages A set to collect error messages.
@@ -556,6 +557,7 @@ public class StudentList {
     public ArrayList<Integer> validatePreferences(String preferencesData, Set<String> errorMessages) {
         ArrayList<Integer> preferences = new ArrayList<>();
         String[] numberStrings = preferencesData.replaceAll("[{}]", "").split(",");
+        Set<Integer> seenPreferences = new HashSet<>();
 
         if (numberStrings.length > 3 || numberStrings[0].trim().isEmpty()) {
             errorMessages.add(SEPRangeException.rejectRankingsRange().getMessage());
@@ -566,8 +568,11 @@ public class StudentList {
                 int preference = Integer.parseInt(numberString.trim());
                 if (preference < 1 || preference > 92) {
                     errorMessages.add(SEPRangeException.rejectPreferenceRange().getMessage());
+                } else if (seenPreferences.contains(preference)) {
+                    errorMessages.add(SEPDuplicateException.rejectDuplicatePreferences().getMessage());
                 } else {
                     preferences.add(preference);
+                    seenPreferences.add(preference);
                 }
             } catch (NumberFormatException e) {
                 errorMessages.add(SEPFormatException.rejectPreferenceFormat().getMessage());
